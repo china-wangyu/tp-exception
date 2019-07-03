@@ -26,7 +26,7 @@ class Exception extends Handle
     public function render(\Exception $e)
     {
         $type = RenderException::getExceptionType($e);
-        $result = RenderException::$type();
+        $result = RenderException::$type($e);
         if ($type === 'default'){
             if (config('app_debug')) {
                 return parent::render($e);

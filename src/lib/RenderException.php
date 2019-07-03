@@ -40,7 +40,7 @@ class RenderException
         if (isset(static::$type[get_class($exception)])){
             return static::$type[get_class($exception)];
         }
-        static::$type['default'];
+        return static::$type['default'];
     }
 
     /**
