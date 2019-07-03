@@ -1,0 +1,19 @@
+{
+  "name": "wangyu/tp-exception",
+  "description": "TP5.1 的异常核心类，含多异常输出，异常类型判断",
+  "authors": [
+    {
+      "name": "wangyu",
+      "email": "china_wangyu@aliyun.com"
+    }
+  ],
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "WangYu\\": "src"
+    }
+  },
+  "require": {
+    "php": ">=7.1.0"
+  }
+}
