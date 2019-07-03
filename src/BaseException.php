@@ -19,6 +19,6 @@ abstract class BaseException  extends \Exception
         isset($params['code']) && $this->code = $params['code'];
         isset($params['message']) && $this->message = $params['message'];
         isset($params['error_code']) && $this->error_code = $params['error_code'];
-        parent::__construct($this->error_code.$this->message,$this->code);
+        parent::__construct($this->error_code.': '.$this->message,$this->code);
     }
 }
