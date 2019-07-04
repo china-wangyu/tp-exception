@@ -27,14 +27,13 @@ class Exception extends Handle
     {
         $type = RenderException::getExceptionType($e);
         $result = RenderException::$type($e);
-        if ($type === 'default'){
+        if ($type === 'render'){
             if (config('app_debug')) {
                 return parent::render($e);
             } else {
-                $this->code = 500;
-                $this->message = '服務器內部錯誤，不想告訴你';
-                $this->error_code = 1000;
+                $result = RenderException::getDefaultReturn();
                 $this->recordErrorLog($e);
+
             }
         }
         return json($result, $this->code);

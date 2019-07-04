@@ -13,6 +13,7 @@ class RenderException
     protected static $type = [
         'default' => 'render',
         '\LinCmsTp5\exception\BaseException' => 'linCmsTp',
+        '\WangYu\BaseException' => 'wangYu',
     ];
 
 
@@ -24,8 +25,8 @@ class RenderException
     public static function render($exception):array
     {
         $result = [
-            'msg' => $exception->message,
-            'code' => $exception->error_code,
+            'msg' => $exception->getMessage(),
+            'code' => 500,
             'request_url' => request()->path()
         ];
         return $result;
@@ -44,6 +45,21 @@ class RenderException
     }
 
     /**
+     * 专属 wangYu 的异常输出
+     * @param $exception
+     * @return array
+     */
+    public static function wangYu($exception):array
+    {
+        $result = [
+            'msg' => $exception->message,
+            'error_code' => $exception->error_code,
+            'request_url' => request()->path()
+        ];
+        return $result;
+    }
+
+    /**
      * 专属 LinCmsTp 的异常输出
      * @param $exception
      * @return array
@@ -56,5 +72,18 @@ class RenderException
             'request_url' => request()->path()
         ];
         return $result;
+    }
+
+    /**
+     * 获取系统默认类型返回值
+     * @return array
+     */
+    public static function getDefaultReturn()
+    {
+        return [
+            'code' => 500,
+            'message' => '服務器內部錯誤，不想告訴你',
+            'error_code' => 1000
+        ];
     }
 }
