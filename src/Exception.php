@@ -27,13 +27,12 @@ class Exception extends Handle
     {
         $type = RenderException::getExceptionType($e);
         $result = RenderException::$type($e);
-        if ($type === 'render'){
+        if ($type === 'default'){
             if (config('app_debug')) {
                 return parent::render($e);
             } else {
                 $result = RenderException::getDefaultReturn();
                 $this->recordErrorLog($e);
-
             }
         }
         return json($result, $this->code);
